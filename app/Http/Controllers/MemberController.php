@@ -31,7 +31,9 @@ class MemberController extends Controller
      */
     public function create()
     {
-        // 目的就是顯示建立會員的頁面
+        if (Auth::check() && Auth::user()->permission < '5') {
+            return back()->with('warning', '權限不足以訪問該頁面 !');
+        }
         return view('manage.member.create');
     }
 
@@ -62,7 +64,7 @@ class MemberController extends Controller
         }
 
         if ($data) {
-            User::create($request->all());
+            $user->save();
         }
 
         return back()->with('success','會員新增成功 !');

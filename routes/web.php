@@ -18,8 +18,8 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/manage', function () {return view('manage.index');})->name('manage');
-Route::prefix('manage')->group(function(){
+Route::get('/manage', function () {return view('manage.index');})->middleware('auth','admin')->name('manage');
+Route::prefix('manage')->middleware('auth','admin')->group(function(){
     Route::resource('member', 'MemberController');
 });
 
