@@ -21,5 +21,15 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/manage', function () {return view('manage.index');})->middleware('auth','admin')->name('manage');
 Route::prefix('manage')->middleware('auth','admin')->group(function(){
     Route::resource('member', 'MemberController');
+    Route::resource('navbar', 'NavbarController');
+});
+
+//在各視圖中可直接使用以下參數
+View::composer(['*'], function ($view) {
+    $navbars = App\Navbar::where('is_open',1)->orderby('sort')->get();
+    $users = App\User::all();
+
+    $view->with('navbars',$navbars);
+    $view->with('users',$users);
 });
 
