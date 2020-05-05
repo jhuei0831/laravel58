@@ -10,6 +10,7 @@
                 <div class="card-body">
                     <ul class="list-inline">
                         <li class="list-inline-item">{{ App\Button::Create() }}</li>
+                        <li class="list-inline-item">{{ App\Button::To(true,'sort',trans('Sort'),'','btn-primary') }}</li>
                     </ul>
                     <div class="alert alert-warning" role="alert">
                         1. 新增頁面連結連結請照{{Request::root()}}/article/導覽列名稱/選單名稱?頁面網址。<br>

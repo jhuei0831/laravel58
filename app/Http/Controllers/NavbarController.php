@@ -164,4 +164,26 @@ class NavbarController extends Controller
         Navbar::destroy($id);
         return back()->with('success', '刪除導覽列成功 !');
     }
+
+    //拖曳排序
+    public function sort(Request $request)
+    {
+        if (Auth::check() && Auth::user()->permission < '3') {
+            return back()->with('warning', '權限不足以訪問該頁面 !');
+        }
+
+        $navbars = Navbar::all();
+
+        foreach ($navbars as $navbar) {
+            foreach ($request->order as $order) {
+                if ($order['id'] == $navbar->id) {
+                    $navbar->update(['sort' => $order['position']]);
+                }
+            }
+        }
+        $sort = DB::table('navbars')->select('name','sort')->orderby('sort')->get();
+        Log::write_log('navbars',$sort,'排序');
+
+        return response('Update Successfully.', 200);
+    }
 }
