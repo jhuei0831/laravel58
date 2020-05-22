@@ -29,6 +29,7 @@ Route::middleware('auth','admin')->group(function() {
 Route::prefix('manage')->middleware('auth','admin')->group(function(){
     Route::resource('member', 'MemberController');
     Route::resource('navbar', 'NavbarController');
+    Route::resource('page', 'PageController');
 });
 
 //在各視圖中可直接使用以下參數

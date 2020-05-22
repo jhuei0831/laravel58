@@ -18,13 +18,13 @@
                                 {{ $navbar->name }}
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                @foreach ($menus as $menu)
+                                {{-- @foreach ($menus as $menu)
                                     @if ($menu->navbar_id == $navbar->id && $menu->link)
                                         <a class="dropdown-item" target="_blank" href="{{ $menu->link }}">{{ $menu->name }}</a>
                                     @elseif($menu->navbar_id == $navbar->id)
                                         <a class="dropdown-item" href="/article/{{ $navbar->name }}/{{ $menu->name }}">{{ $menu->name }}</a>
                                     @endif
-                                @endforeach
+                                @endforeach --}}
                                 </div>
                             </li>
                             @break
