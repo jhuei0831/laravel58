@@ -55,7 +55,7 @@ class NavbarController extends Controller
 
         foreach ($request->except('_token', '_method') as $key => $value) {
             if ($request->filled($key) && $request->filled($key) != NULL) {
-                $navbar->$key = $data[$key];
+                $navbar->$key = strip_tags(clean($data[$key]));
                 if ($navbar->$key == '') {
                     $error += 1;
                 }
@@ -126,7 +126,7 @@ class NavbarController extends Controller
         // 逐筆進行htmlpurufier 並去掉<p></p>
         foreach ($request->except('_token', '_method') as $key => $value) {
             if ($request->filled($key) && $request->filled($key) != NULL) {
-                $navbar->$key = $data[$key];
+                $navbar->$key = strip_tags(clean($data[$key]));
                 if ($navbar->$key == '') {
                     $error += 1;
                 }

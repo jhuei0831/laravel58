@@ -58,7 +58,7 @@ class PageController extends Controller
 
         foreach ($request->except('_token', '_method','files') as $key => $value) {
             if ($request->filled($key) && $request->filled($key) != NULL && $key != 'content') {
-                $page->$key = $data[$key];
+                $page->$key = strip_tags(clean($data[$key]));
                 if ($page->$key == '') {
                     $error += 1;
                 }
@@ -68,7 +68,7 @@ class PageController extends Controller
             }
         }
 
-        $page->content = $request->input('content');
+        $page->content = clean($request->input('content'));
         $page->editor = Auth::user()->name;
         if ($error == 0) {
             $page->save();
@@ -132,7 +132,7 @@ class PageController extends Controller
 
         foreach ($request->except('_token','_method','files') as $key => $value) {
             if ($request->filled($key) && $request->filled($key) != NULL && $key != 'content') {
-                $page->$key = $data[$key];
+                $page->$key = strip_tags(clean($data[$key]));
                 if ($page->$key == '') {
                     $error += 1;
                 }
@@ -141,7 +141,7 @@ class PageController extends Controller
                 $page->$key = NULL;
             }
         }
-        $page->content = $request->input('content');
+        $page->content = clean($request->input('content'));
         $page->editor = Auth::user()->name;
 
         if ($error == 0) {

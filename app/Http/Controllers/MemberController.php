@@ -59,7 +59,7 @@ class MemberController extends Controller
                 $user->password = Hash::make($data['password']);
             }
             elseif ($request->filled($key)) {
-                $user->$key = $data[$key];
+                $user->$key = strip_tags(clean($data[$key]));
             }
         }
 
@@ -122,7 +122,7 @@ class MemberController extends Controller
                     $user->password = Hash::make($data['password']);
                 }
                 elseif ($request->filled($key)) {
-                    $user->$key = $data[$key];
+                    $user->$key = strip_tags(clean($data[$key]));
                     if ($user->$key == '') {
                         $error += 1;
                     }
@@ -147,7 +147,7 @@ class MemberController extends Controller
             // 逐筆進行htmlpurufier 並去掉<p></p>
             foreach ($request->except('_token','_method') as $key => $value) {
                 if ($request->filled($key)) {
-                    $user->$key = $data[$key];
+                    $user->$key = strip_tags(clean($data[$key]));
                     if ($user->$key == '') {
                         $error += 1;
                     }
