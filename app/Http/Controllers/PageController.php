@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Page;
 use App\Navbar;
+use App\Log;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -71,6 +72,8 @@ class PageController extends Controller
         $page->content = clean($request->input('content'));
         $page->editor = Auth::user()->name;
         if ($error == 0) {
+            // 寫入log
+            Log::write_log('pages',$request->all());
             $page->save();
         }
         else{
@@ -145,6 +148,8 @@ class PageController extends Controller
         $page->editor = Auth::user()->name;
 
         if ($error == 0) {
+            // 寫入log
+            Log::write_log('pages',$request->all());
             $page->save();
         }
         else{
@@ -164,6 +169,8 @@ class PageController extends Controller
         if (Auth::check() && Auth::user()->permission < '4') {
             return back()->with('warning', '權限不足以訪問該頁面 !');
         }
+        // 寫入log
+        Log::write_log('pages',Page::where('id',$id)->first());
         Page::destroy($id);
         return back()->with('success','刪除頁面成功 !');
     }

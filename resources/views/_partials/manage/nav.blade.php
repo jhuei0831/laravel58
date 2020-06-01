@@ -20,6 +20,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('member.index') }}">{{ trans('Member').trans('Manage') }}</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('log.index') }}">{{ trans('Log') }}</a>
+                </li>
                 @endif
             </ul>
 

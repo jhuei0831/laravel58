@@ -23,13 +23,14 @@ Route::get('/manage', function () {return view('manage.index');})->middleware('a
 //排序、中介層:登入/管理員
 Route::middleware('auth','admin')->group(function() {
     Route::post('navbar-sortable','NavbarController@sort')->name('navbar.sort');
-    Route::get('/manage/navbar/sort', function () {return view('manage.navbar.sort');});
+    Route::any('/manage/navbar/sort', function () {return view('manage.navbar.sort');});
 });
 
 Route::prefix('manage')->middleware('auth','admin')->group(function(){
     Route::resource('member', 'MemberController');
     Route::resource('navbar', 'NavbarController');
     Route::resource('page', 'PageController');
+    Route::resource('log', 'LogController');
 });
 
 //在各視圖中可直接使用以下參數

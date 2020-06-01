@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Navbar;
+use App\Log;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -66,6 +67,8 @@ class NavbarController extends Controller
         }
 
         if ($error == 0) {
+            // 寫入log
+            Log::write_log('navbars',$request->all());
             $navbar->save();
         }
         else{
@@ -140,6 +143,8 @@ class NavbarController extends Controller
         }
 
         if ($error == 0) {
+            // 寫入log
+            Log::write_log('navbars',$request->all());
             $navbar->save();
         }
         else{
@@ -161,6 +166,8 @@ class NavbarController extends Controller
             return back()->with('warning', '權限不足以訪問該頁面 !');
         }
         // 寫入log
+        Log::write_log('navbars',Navbar::where('id',$id)->first());
+
         Navbar::destroy($id);
         return back()->with('success', '刪除導覽列成功 !');
     }
