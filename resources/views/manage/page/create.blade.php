@@ -13,6 +13,20 @@
                         </ul>
                         @csrf
                         <div class="form-group row">
+                            <label for="menu_id" class="col-md-4 col-form-label text-md-right">{{ trans('Menu') }}</label>
+                            <div class="col-md-6">
+                                <select class='form-control' name='menu_id' aria-describedby="menuHelp">
+                                    <option value=''>{{ trans('Please choose').trans('Menu') }}</option>
+                                    @foreach($menus as $key => $value)
+                                        <option value="{{ $value['id'] }}">{{ $value['name'] }}</option>
+                                    @endforeach
+                                </select>
+                                <span id="menuHelp" class="help-block">
+                                    選擇要加入的導覽列項目。
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
                             <label for="title" class="col-md-4 col-form-label text-md-right">{{ trans('Title') }}</label>
                             <div class="col-md-6">
                                 <input type="text" class="form-control @error('title') is-invalid @enderror" id="title" name="title" value="{{ old('title') }}" placeholder="{{ trans('Title') }}">

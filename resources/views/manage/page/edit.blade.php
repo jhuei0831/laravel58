@@ -16,6 +16,25 @@
 						@method('PUT')
 
                         <div class="form-group row">
+                            <label for="menu_id" class="col-md-4 col-form-label text-md-right">{{ trans('Menu') }}</label>
+                            <div class="col-md-6">
+                                <select class='form-control' name='menu_id' aria-describedby="menuHelp">
+                                    <option value='NULL' {{ ($page->menu_id) ? "selected" : "" }}>{{ trans('Please choose').trans('Menu') }}</option>
+                                    @foreach($menus as $key => $value)
+                                        @if ($value['id'] == $page->menu_id)
+                                            <option value="{{ $value['id'] }}" selected>{{ $value['name'] }}</option>
+                                        @else
+                                            <option value="{{ $value['id'] }}">{{ $value['name'] }}</option>
+                                        @endif
+                                    @endforeach
+                                </select>
+                                <span id="menuHelp" class="help-block">
+                                    選擇要加入的導覽列項目。
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
                             <label for="title" class="col-md-4 col-form-label text-md-right">{{ trans('Title') }}</label>
 
                             <div class="col-md-6">

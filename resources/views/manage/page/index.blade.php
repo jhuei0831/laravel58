@@ -20,6 +20,7 @@
 		                	<thead>
 		                		<tr class="table-info active">
 		                			<th class="text-nowrap text-center">{{ trans('Editor') }}</th>
+                                    <th class="text-nowrap text-center">{{ trans('Menu') }}</th>
 		                			<th class="text-nowrap text-center">{{ trans('Title') }}</th>
 		                			<th class="text-nowrap text-center">{{ trans('Page').trans('Url') }}</th>
 		                			<th class="text-nowrap text-center">{{ trans('Is_open') }}</th>
@@ -31,6 +32,7 @@
 								@foreach ($all_pages as $page)
 									<tr>
 										<td>{{ $page->editor }}</td>
+                                        <td>{{ App\Menu::where('id','=',$page->menu_id)->first('name')['name'] }}</td>
 										<td>{{ $page->title }}</td>
 										<td>
 											{{ $page->url }}
@@ -42,11 +44,11 @@
 											<font color="{{App\Enum::is_open['color'][$page->is_slide]}}"><i class="fas fa-{{App\Enum::is_open['label'][$page->is_slide]}}"></i></font>
 										</td>
 										<td>
-											<form action="{{ route('page.edit',$page->id) }}" method="GET">
+											<form class="d-inline" action="{{ route('page.edit',$page->id) }}" method="GET">
 											@csrf
 											{{ App\Button::edit($page->id) }}
 											</form>
-											<form action="{{ route('page.destroy',$page->id) }}" method="POST">
+											<form class="d-inline" action="{{ route('page.destroy',$page->id) }}" method="POST">
 											@method('DELETE')
 											@csrf
 											{{ App\Button::deleting($page->id) }}

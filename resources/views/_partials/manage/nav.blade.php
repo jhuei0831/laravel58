@@ -14,6 +14,9 @@
                     <a class="nav-link" href="{{ route('navbar.index') }}">{{ trans('Navbar').trans('Manage') }}</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="{{ route('menu.index') }}">{{ trans('Menu').trans('Manage') }}</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="{{ route('page.index') }}">{{ trans('Page').trans('Manage') }}</a>
                 </li>
                 @if (Auth::check() && Auth::user()->permission > '4')

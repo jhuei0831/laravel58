@@ -37,11 +37,11 @@
                                         <td>{{ $navbar->sort }}</td>
                                         <td><font color="{{App\Enum::is_open['color'][$navbar->is_open]}}"><i class="fas fa-{{App\Enum::is_open['label'][$navbar->is_open]}}"></i></font></td>
                                         <td>
-                                            <form action="{{ route('navbar.edit',$navbar->id) }}" method="GET">
+                                            <form class="d-inline" action="{{ route('navbar.edit',$navbar->id) }}" method="GET">
                                             @csrf
                                             {{ App\Button::edit($navbar->id) }}
                                             </form>
-                                            <form action="{{ route('navbar.destroy',$navbar->id) }}" method="POST">
+                                            <form class="d-inline" action="{{ route('navbar.destroy',$navbar->id) }}" method="POST">
                                             @method('DELETE')
                                             @csrf
                                             {{ App\Button::deleting($navbar->id) }}
