@@ -19,7 +19,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/manage', function () {return view('manage.index');})->middleware('auth','admin')->name('manage');
-Route::get('/article/{nav}/{menu}?{page}', 'PageController@pages')->name('page');
+Route::get('/article/{nav}/{menu}?{page}', function () {return view('menu');})->name('page');
 Route::get('/article/{nav}/{menu}', 'MenuController@menus')->name('menu');
 
 //排序、中介層:登入/管理員

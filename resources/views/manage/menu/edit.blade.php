@@ -60,7 +60,7 @@
 
                         <div class="form-group row">
                             <label for="is_list" class="col-md-4 col-form-label text-md-right">{{ trans('Is_list') }}</label>
-                            <div class="col-md-6">
+                            <div class="form-inline col-md-6">
                                 <div class="custom-control custom-radio custom-control-inline">
                                     <input class="custom-control-input" type="radio" name="is_list" id="is_list1" value="1" {{ ($menu->is_list=="1")? "checked" : "" }}>
                                     <label class="custom-control-label" for="is_list1">{{ trans('Yes') }}</label>
@@ -74,7 +74,7 @@
 
                         <div class="form-group row">
                             <label for="is_open" class="col-md-4 col-form-label text-md-right">{{ trans('Is_open') }}</label>
-                            <div class="col-md-6">
+                            <div class="form-inline col-md-6">
                                 <div class="custom-control custom-radio custom-control-inline">
                                     <input class="custom-control-input" type="radio" name="is_open" id="is_open1" value="1" {{ ($menu->is_open=="1")? "checked" : "" }}>
                                     <label class="custom-control-label" for="is_open1">{{ trans('Yes') }}</label>
